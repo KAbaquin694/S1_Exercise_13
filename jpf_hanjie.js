@@ -60,10 +60,32 @@ function init() {
       //Insert title for first puzzle
       document.getElementById("puzzleTitle").innerHTML = "Puzzle 1";
       //Insert HTML code for first puzzle table
-      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzleHint, puzzleRating, puzzle1);
+      document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+      //Add event handlers for event puzzle buttons
+      var puzzleButtons = document.getElementsByClassName("puzzles");
+      for (var i = 0; i < puzzleButtons.length; i++) {
+            puzzleButtons[i].onclick = swapPuzzle;
+      }
 }
 
-
+function swapPuzzle(e) {
+      //Retrieve id of clicked button
+      var puzzleID = e.target.id;
+      //Retrieve value of clicked button
+      var puzzleTitle = e.target.value;
+      document.getElementById("puzzleTitle").innerHTML = puzzleTitle;
+      //Display puzz;e based on value of puzzleID variable
+      switch (puzzleID) {
+            case "puzzle1":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle1Hint, puzzle1Rating, puzzle1);
+                  break;
+            case "puzzle2":
+                  document.getElementById("puzzle").innerHTML = drawPuzzle(puzzle2Hint, puzzle2Rating, puzzle2);
+                  break;
+            default:
+                  break;
+      }
+}
 
 
 
